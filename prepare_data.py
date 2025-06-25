@@ -26,7 +26,7 @@ ds = (
     .dropna(dim="profile", how="all", subset=["u_obs", "v_obs"], thresh=400)
 )
 
-
+# %%
 lev4 = xr.open_dataset(
     "ipfs://QmP73Kosem4exJcZXxG8vpN4YLqaepoZSPWwnQ9N1xffus/Level_4/PERCUSION_Level_4.zarr",
     engine="zarr",
@@ -40,7 +40,7 @@ lev3 = (
     .interpolate_na(dim="altitude")
 )
 
-
+# %%
 ds = ds.assign(launch_time=ds.launch_time.astype(np.datetime64))
 
 # %%
@@ -354,9 +354,13 @@ write_ds(
     object_dims=("profile", "analysis_type"),
     alt_dim="p",
 )
+# %%
+ds = xr.open_dataset("ds_assimilated_and_orcestra.nc")
 
 # %%
 profile = 20
 result_ds.isel(sonde_id=profile).sel(analysis_type="orc").v.plot()
 
 result_ds.isel(sonde_id=profile).sel(analysis_type="obs").v.plot()
+
+# %%
