@@ -193,7 +193,6 @@ def find_best_matches_for_duplicates(
                             ]
                             mean_corr[profile][duplicate_id]["mean_err"] = np.inf
                     if np.all(np.isin(list(mean_corr[profile].keys()), known_matches)):
-
                         best_match[profile] = ""
                     else:
                         best_sonde = min(
@@ -332,7 +331,6 @@ result_ds = xr.concat(
 # %%
 def fix_q_unit(ds):
     for var in ds.variables:
-
         if ds[var].attrs.get("units") == "g/kg":
             print(var)
             ds[var] = ds[var] / 1000  # convert g kg-1 to kg kg-1
